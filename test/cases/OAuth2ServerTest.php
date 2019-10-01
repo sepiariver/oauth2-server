@@ -38,4 +38,13 @@ class OAuth2ServerTest extends TestCase
         $this->assertEquals('bar', $request->query('foo'));
         $this->assertEquals('baz', $request->request('fooz'));
     }
+    public function testCreateResponse()
+    {
+        $response = $this->oauth2server->createResponse();
+        $this->assertTrue($response instanceof \OAuth2\Response);
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals('OK', $response->getStatusText());
+        $response->setParameters(['foo' => 'bar']);
+        $this->assertEquals(json_encode(['foo' => 'bar']), $response->getResponseBody());
+    }
 }
