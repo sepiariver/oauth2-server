@@ -44,7 +44,7 @@ class OAuth2Server
             'namespace' => $this->namespace,
             'corePath' => $corePath,
             'modelPath' => $corePath . 'model/',
-            'oauth2Path' => $corePath . 'model/OAuth2/',
+            'vendorPath' => $corePath . 'model/vendor/',
             'chunksPath' => $corePath . 'elements/chunks/',
             'snippetsPath' => $corePath . 'elements/snippets/',
             'templatesPath' => $corePath . 'templates/',
@@ -88,9 +88,7 @@ class OAuth2Server
         $this->modx->lexicon->load('oauth2server:default');
         
         // Load OAuth2
-        require_once($this->options['oauth2Path'] . 'Autoloader.php');
-        OAuth2\Autoloader::register();
-               
+        require_once($this->options['vendorPath'] . 'autoload.php');
     }
 
     /**
